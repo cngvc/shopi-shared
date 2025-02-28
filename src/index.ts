@@ -33,3 +33,5 @@ export {
 } from './auth.interface';
 
 export { winstonLogger } from './logger';
+
+export { verifyGatewayRequest } from './gateway-middleware';
