@@ -1,3 +1,5 @@
+export { IEmailLocals } from './email.interface';
+
 export {
   lowerCase,
   toUpperCase,
