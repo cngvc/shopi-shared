@@ -31,3 +31,5 @@ export {
   IAuthResponse,
   IAuthUser,
 } from './auth.interface';
+
+export { winstonLogger } from './logger';
