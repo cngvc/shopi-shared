@@ -6,8 +6,8 @@ dotenv.config({});
 
 const tokens: string[] = [
   'auth',
-  'seller',
-  'gig',
+  'store',
+  'product',
   'search',
   'buyer',
   'message',

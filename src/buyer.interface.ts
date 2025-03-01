@@ -7,7 +7,7 @@ export interface IBuyerDocument {
   profilePicture?: string;
   country: string;
   isSeller?: boolean;
-  purchasedGigs: string[];
+  purchasedProducts: string[];
   createdAt?: Date | string;
   updatedAt?: Date | string;
 }
