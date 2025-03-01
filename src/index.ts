@@ -39,3 +39,15 @@ export { winstonLogger } from './logger';
 export { verifyGatewayRequest } from './gateway-middleware';
 
 export { ExchangeNames, RoutingKeys, QueueNames } from './queues.constant';
+
+export { IBuyerDocument } from './buyer.interface';
+
+export { StoreType, IStoreDocument } from './store.interface';
+
+export {
+  IReviewMessageDetails,
+  IRatingTypes,
+  IReviewDocument,
+  IRatingCategoryItem,
+  IRatingCategories,
+} from './review.interface';
