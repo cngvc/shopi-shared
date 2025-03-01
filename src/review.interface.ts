@@ -1,7 +1,7 @@
 export interface IReviewMessageDetails {
   productId?: string;
   reviewerId?: string;
-  sellerId?: string;
+  storeId?: string;
   review?: string;
   rating?: number;
   orderId?: string;
@@ -17,7 +17,7 @@ export interface IReviewDocument {
   _id?: string;
   productId: string;
   reviewerId: string;
-  sellerId: string;
+  storeId: string;
   review: string;
   reviewerImage: string;
   rating: number;
