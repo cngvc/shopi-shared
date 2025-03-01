@@ -18,7 +18,6 @@ export interface IStoreDocument extends Record<string, StoreType> {
   email?: string;
   profilePicture?: string;
   description: string;
-  country: string;
   ratingsCount?: number;
   ratingSum?: number;
   ratingCategories?: IRatingCategories;
