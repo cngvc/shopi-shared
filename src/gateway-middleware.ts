@@ -4,7 +4,7 @@ import { NotAuthorizedError } from './error-handler';
 import dotenv from 'dotenv';
 dotenv.config({});
 
-const tokens: string[] = [
+const tokens = [
   'auth',
   'store',
   'product',
@@ -13,7 +13,9 @@ const tokens: string[] = [
   'message',
   'order',
   'review',
-];
+] as const;
+
+export type GatewayToken = (typeof tokens)[number];
 
 export function verifyGatewayRequest(
   req: Request,
@@ -35,7 +37,7 @@ export function verifyGatewayRequest(
       id: string;
       iat: number;
     };
-    if (!tokens.includes(payload.id)) {
+    if (!tokens.includes(payload.id as GatewayToken)) {
       throw new NotAuthorizedError(
         'Invalid request',
         'verifyGatewayRequest(): Request payload is invalid'
