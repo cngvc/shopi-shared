@@ -1,3 +1,5 @@
+export { ICreateProduct, IStoreProduct } from './product.interface';
+
 export { IEmailLocals } from './email.interface';
 
 export {
