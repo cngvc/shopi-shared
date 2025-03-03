@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
-import { NotAuthorizedError } from './error-handler';
+import { NotAuthorizedError } from './responses/error-handler';
 import dotenv from 'dotenv';
 dotenv.config({});
 

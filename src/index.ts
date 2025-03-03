@@ -20,7 +20,12 @@ export {
   ServerError,
   NotAuthorizedError,
   ErrnoException,
-} from './error-handler';
+} from './responses/error-handler';
+
+export {
+  OkRequestSuccess,
+  CreatedRequestSuccess,
+} from './responses/success-handler';
 
 export {
   IAuthPayload,
