@@ -21,7 +21,7 @@ export interface IStoreProduct {
   thumb?: string;
   quantity?: number;
   description: string;
-  slug: string;
+  slug?: string;
   isPublished?: boolean;
   ratingsCount?: number;
   ratingSum?: number;
