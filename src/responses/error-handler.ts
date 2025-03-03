@@ -23,6 +23,7 @@ export abstract class CustomError extends Error {
   constructor(message: string, comingFrom: string) {
     super(message);
     this.comingFrom = comingFrom;
+    Object.setPrototypeOf(this, CustomError.prototype);
   }
 
   serializeError(): IError {
