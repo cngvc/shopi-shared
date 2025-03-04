@@ -13,7 +13,7 @@ export interface ICreateProduct extends Record<string, ProductType> {
   price: number;
 }
 
-export interface IStoreProduct {
+export interface IProductDocument {
   _id?: string | ObjectId;
   id?: string | ObjectId;
   storeId?: string | ObjectId;

@@ -1,4 +1,4 @@
-export { ICreateProduct, IStoreProduct } from './product.interface';
+export { ICreateProduct, IProductDocument } from './product.interface';
 
 export { IEmailLocals } from './email.interface';
 
@@ -58,3 +58,13 @@ export {
   IRatingCategoryItem,
   IRatingCategories,
 } from './review.interface';
+
+export {
+  IConversationDocument,
+  IMessageDocument,
+  IMessageDetails,
+  IChatBoxProps,
+  IChatStoreProps,
+  IChatBuyerProps,
+  IChatMessageProps,
+} from './chat.interface';
