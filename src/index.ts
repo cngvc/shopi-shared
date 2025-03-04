@@ -68,3 +68,5 @@ export {
   IChatBuyerProps,
   IChatMessageProps,
 } from './chat.interface';
+
+export { SocketEvents } from './socket-events';
