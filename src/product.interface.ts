@@ -11,6 +11,8 @@ export interface ICreateProduct extends Record<string, ProductType> {
   description: string;
   isPublished?: boolean;
   price: number;
+  tags?: string[];
+  categories: string[];
 }
 
 export interface IProductDocument {
@@ -27,6 +29,8 @@ export interface IProductDocument {
   ratingSum?: number;
   ratingCategories?: IRatingCategories;
   price: number;
+  tags: string[];
+  categories: string[];
   createdAt?: Date | string;
   toJSON?: () => unknown;
 }
