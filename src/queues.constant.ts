@@ -4,6 +4,8 @@ export const ExchangeNames = {
   USERS_STORE_UPDATE: 'update-users-store',
   GET_STORE_USERS: 'get-store-users',
   CREATE_SEED_PRODUCT: 'create-seeds-product',
+  GET_USERS: 'get-users',
+  CREATE_SEED_CHAT: 'create-seeds-chat',
 } as const satisfies Record<string, string>;
 
 export const RoutingKeys = {
@@ -12,6 +14,8 @@ export const RoutingKeys = {
   USERS_STORE_UPDATE: 'update-users-store-key',
   GET_STORE_USERS: 'get-store-users-key',
   CREATE_SEED_PRODUCT: 'create-seeds-product-key',
+  GET_USERS: 'get-users-key',
+  CREATE_SEED_CHAT: 'create-seeds-chat-key',
 } as const satisfies Record<string, string>;
 
 export const QueueNames = {
@@ -20,4 +24,6 @@ export const QueueNames = {
   USERS_STORE_UPDATE: 'update-users-store-queue',
   GET_STORE_USERS: 'get-store-users-queue',
   CREATE_SEED_PRODUCT: 'create-seeds-product-queue',
+  GET_USERS: 'get-users-queue',
+  CREATE_SEED_CHAT: 'create-seeds-chat-queue',
 } as const satisfies Record<string, string>;
