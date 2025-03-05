@@ -1,6 +1,8 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
 import { NotAuthorizedError } from './responses/error-handler';
+import { verify } from 'jsonwebtoken';
+import { IAuthPayload } from './auth.interface';
 import dotenv from 'dotenv';
 dotenv.config({});
 
@@ -17,37 +19,75 @@ const tokens = [
 
 export type GatewayToken = (typeof tokens)[number];
 
-export function verifyGatewayRequest(
-  req: Request,
-  res: Response,
-  next: NextFunction
-): void {
-  const token = req.headers['gateway-token'] as string | undefined;
-  if (!token) {
-    throw new NotAuthorizedError(
-      'Invalid request',
-      'verifyGatewayRequest(): Request not coming from api gateway'
-    );
-  }
-  try {
-    const payload = jwt.verify(
-      token,
-      process.env.GATEWAY_JWT_TOKEN_SECRET || ''
-    ) as {
-      id: string;
-      iat: number;
-    };
-    if (!tokens.includes(payload.id as GatewayToken)) {
+export class AuthMiddleware {
+  private constructor() {}
+
+  static verifySessionJWT(req: Request, _: Response, next: NextFunction) {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
       throw new NotAuthorizedError(
-        'Invalid request',
-        'verifyGatewayRequest(): Request payload is invalid'
+        'Authorization token is missing or invalid.',
+        'verifyBearerToken method'
       );
     }
-  } catch (error) {
-    throw new NotAuthorizedError(
-      'Invalid request',
-      'verifyGatewayRequest(): Request not coming from api gateway'
-    );
+    try {
+      const token = authHeader.split(' ')[1];
+      const payload = verify(
+        token,
+        `${process.env.AUTH_JWT_TOKEN_SECRET}`
+      ) as IAuthPayload;
+      req.currentUser = payload;
+    } catch (error) {
+      throw new NotAuthorizedError(
+        'Token is not available, please login again.',
+        'verify token method'
+      );
+    }
+    next();
   }
-  next();
+
+  static checkAuthentication(req: Request, _: Response, next: NextFunction) {
+    if (!req.currentUser) {
+      throw new NotAuthorizedError(
+        'Authentication is required to access this route.',
+        'checkAuthentication method'
+      );
+    }
+    next();
+  }
+
+  static verifyGatewayRequest(
+    req: Request,
+    _: Response,
+    next: NextFunction
+  ): void {
+    const token = req.headers['gateway-token'] as string | undefined;
+    if (!token) {
+      throw new NotAuthorizedError(
+        'Invalid request, request was not coming from api gateway',
+        'verifyGatewayRequest method'
+      );
+    }
+    try {
+      const payload = jwt.verify(
+        token,
+        process.env.GATEWAY_JWT_TOKEN_SECRET || ''
+      ) as {
+        id: string;
+        iat: number;
+      };
+      if (!tokens.includes(payload.id as GatewayToken)) {
+        throw new NotAuthorizedError(
+          'Invalid request, request payload is invalid.',
+          'verifyGatewayRequest'
+        );
+      }
+    } catch (error) {
+      throw new NotAuthorizedError(
+        'Invalid request, request was not coming from api gateway.',
+        'verifyGatewayRequest'
+      );
+    }
+    next();
+  }
 }

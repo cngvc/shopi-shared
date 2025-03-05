@@ -43,7 +43,7 @@ export {
 
 export { winstonLogger } from './logger';
 
-export { verifyGatewayRequest, GatewayToken } from './gateway-middleware';
+export { AuthMiddleware } from './gateway-middleware';
 
 export { ExchangeNames, RoutingKeys, QueueNames } from './queues.constant';
 
