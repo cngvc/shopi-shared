@@ -2,8 +2,8 @@ import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
 import { NotAuthorizedError } from './responses/error-handler';
 import { verify } from 'jsonwebtoken';
-import { IAuthPayload } from './auth.interface';
 import dotenv from 'dotenv';
+import { IAuthPayload } from './auth.interface';
 dotenv.config({});
 
 const tokens = [
