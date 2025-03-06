@@ -70,3 +70,17 @@ export {
 } from './chat.interface';
 
 export { SocketEvents } from './socket-events';
+
+export {
+  createConversionSchema,
+  sendMessageSchema,
+  changePasswordSchema,
+  emailSchema,
+  passwordSchema,
+  productCreateSchema,
+  productUpdateSchema,
+  signinSchema,
+  signupClientSchema,
+  signupSchema,
+  storeSchema,
+} from './schemes';
