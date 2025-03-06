@@ -1,3 +1,5 @@
+export { IAuthPayload } from './auth.interface';
+
 export {
   lowerCase,
   toUpperCase,
