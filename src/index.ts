@@ -1,5 +1,3 @@
-export { IAuthPayload } from './auth.interface';
-
 export {
   lowerCase,
   toUpperCase,
@@ -32,3 +30,17 @@ export { AuthMiddleware, GatewayToken } from './gateway-middleware';
 export { ExchangeNames, RoutingKeys, QueueNames } from './queues.constant';
 
 export { SocketEvents } from './socket-events';
+
+export {
+  IAuthPayload,
+  IAuth,
+  IAuthDocument,
+  IAuthBuyerMessageDetails,
+  IEmailMessageDetails,
+  ISignUpPayload,
+  ISignInPayload,
+  IForgotPassword,
+  IResetPassword,
+  IAuthResponse,
+  IAuthUser,
+} from './auth.interface';
