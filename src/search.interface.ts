@@ -17,7 +17,7 @@ export interface IHitsTotal {
 export interface IQueryList {
   query_string?: IQueryString;
   range?: Partial<Record<Field, QueryDslRangeQuery>>;
-  isPublished?: ITerm;
+  term?: ITerm;
 }
 
 export interface IQueryString {
