@@ -10,11 +10,13 @@ const tokens = [
   'auth',
   'store',
   'product',
+  'order',
   'search',
   'buyer',
   'message',
-  'order',
   'review',
+  'cart',
+  'online-status',
 ] as const;
 
 export type GatewayToken = (typeof tokens)[number];
