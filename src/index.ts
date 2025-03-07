@@ -33,13 +33,7 @@ export {
   IAuthPayload,
   IAuth,
   IAuthDocument,
-  IAuthBuyerMessageDetails,
   IEmailMessageDetails,
-  ISignUpPayload,
-  ISignInPayload,
-  IForgotPassword,
-  IResetPassword,
-  IAuthResponse,
   IAuthUser,
 } from './auth.interface';
 
