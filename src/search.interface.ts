@@ -30,7 +30,7 @@ export interface ITerm {
 }
 
 export interface IPaginateProps {
-  from: string;
+  from: number;
   size: number;
-  type: string;
+  type?: string;
 }
