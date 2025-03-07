@@ -44,3 +44,12 @@ export {
   IAuthResponse,
   IAuthUser,
 } from './auth.interface';
+
+export {
+  ISearchResult,
+  IHitsTotal,
+  IQueryList,
+  IQueryString,
+  ITerm,
+  IPaginateProps,
+} from './search.interface';
