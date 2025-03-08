@@ -7,6 +7,8 @@ import {
 } from '@elastic/elasticsearch/lib/api/types';
 import { createLogger } from './logger.helper';
 import { NotFoundError } from '../responses/error-handler';
+import dotenv from 'dotenv';
+dotenv.config({});
 
 export type QueryListType = QueryDslQueryContainer | QueryDslQueryContainer[];
 
