@@ -1,3 +1,7 @@
+export { ElasticSearch } from './helpers/elasticsearch.helper';
+
+export { createLogger } from './helpers/logger.helper';
+
 export {
   lowerCase,
   toUpperCase,
@@ -5,7 +9,6 @@ export {
   isDataURL,
   getErrorMessage,
 } from './helpers';
-
 export {
   IError,
   IErrorResponse,
@@ -22,8 +25,6 @@ export {
   OkRequestSuccess,
   CreatedRequestSuccess,
 } from './responses/success-handler';
-
-export { winstonLogger } from './logger';
 
 export { AuthMiddleware, GatewayToken } from './gateway-middleware';
 
