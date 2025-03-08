@@ -5,32 +5,30 @@ import {
   SearchRequest,
   SearchResponse,
 } from '@elastic/elasticsearch/lib/api/types';
-import { createLogger } from './logger.helper';
+import { createLogger, ServiceLogger } from './logger.helper';
 import { NotFoundError } from '../responses/error-handler';
-import dotenv from 'dotenv';
-dotenv.config({});
 
 export type QueryListType = QueryDslQueryContainer | QueryDslQueryContainer[];
 
-const { log, logCatch } = createLogger(
-  'Elastic search',
-  `${process.env.ELASTIC_SEARCH_URL}`
-);
-
 export class ElasticSearch {
   private elasticSearchClient: Client;
+  private serviceLogger: ServiceLogger;
+
   constructor(private readonly elasticSearchUrl: string) {
     this.elasticSearchClient = new Client({ node: elasticSearchUrl });
+    this.serviceLogger = createLogger('Elastic search', elasticSearchUrl);
   }
   async checkConnection(): Promise<void> {
     let isConnected = false;
     while (!isConnected) {
       try {
         const health = await this.elasticSearchClient.cluster.health({});
-        log.info(`Elasticsearch health status - ${health.status}`);
+        this.serviceLogger.log.info(
+          `Elasticsearch health status - ${health.status}`
+        );
         isConnected = true;
       } catch (error) {
-        logCatch(
+        this.serviceLogger.logCatch(
           error,
           'checkConnection, connection to elasticsearch failed, retrying'
         );
@@ -48,7 +46,7 @@ export class ElasticSearch {
       });
       return result.count;
     } catch (error) {
-      logCatch(error, 'getDocumentCount');
+      this.serviceLogger.logCatch(error, 'getDocumentCount');
       return 0;
     }
   }
@@ -60,7 +58,7 @@ export class ElasticSearch {
       });
       return result?._source as T;
     } catch (error) {
-      logCatch(error, 'createIndex');
+      this.serviceLogger.logCatch(error, 'createIndex');
       throw new NotFoundError('Item not found', 'getIndexedData method');
     }
   }
@@ -70,12 +68,12 @@ export class ElasticSearch {
       if (!exists) {
         await this.elasticSearchClient.indices.create({ index: indexName });
         await this.elasticSearchClient.indices.refresh({ index: indexName });
-        log.info(`Created index ${indexName}.`);
+        this.serviceLogger.log.info(`Created index ${indexName}.`);
       } else {
-        log.info(`Index "${indexName}" already exists.`);
+        this.serviceLogger.log.info(`Index "${indexName}" already exists.`);
       }
     } catch (error) {
-      logCatch(error, 'createIndex');
+      this.serviceLogger.logCatch(error, 'createIndex');
     }
   }
   async addItemToIndex<T>(
@@ -84,14 +82,14 @@ export class ElasticSearch {
     doc: T
   ): Promise<void> {
     try {
-      log.info(`Adding new document to index ${index}`);
+      this.serviceLogger.log.info(`Adding new document to index ${index}`);
       await this.elasticSearchClient.index({
         index,
         id: itemId,
         document: doc,
       });
     } catch (error) {
-      logCatch(error, 'addItemToIndex');
+      this.serviceLogger.logCatch(error, 'addItemToIndex');
     }
   }
   async updateIndexedItem<T>(
@@ -106,7 +104,7 @@ export class ElasticSearch {
         doc,
       });
     } catch (error) {
-      logCatch(error, 'updateIndexedItem');
+      this.serviceLogger.logCatch(error, 'updateIndexedItem');
     }
   }
   async deleteIndexedItem(index: string, itemId: string): Promise<void> {
@@ -116,7 +114,7 @@ export class ElasticSearch {
         id: itemId,
       });
     } catch (error) {
-      logCatch(error, 'deleteIndexedItem');
+      this.serviceLogger.logCatch(error, 'deleteIndexedItem');
     }
   }
   async search(
