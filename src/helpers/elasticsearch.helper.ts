@@ -18,6 +18,11 @@ export class ElasticSearch {
     this.elasticSearchClient = new Client({ node: elasticSearchUrl });
     this.serviceLogger = createLogger('Elastic search', elasticSearchUrl);
   }
+
+  public get client(): Client {
+    return this.elasticSearchClient;
+  }
+
   async checkConnection(): Promise<void> {
     let isConnected = false;
     while (!isConnected) {
