@@ -55,7 +55,10 @@ export class ElasticSearch {
       return 0;
     }
   }
-  async getIndexedData<T>(index: string, identifier: string): Promise<T> {
+  async getIndexedData<T>(
+    index: string,
+    identifier: string
+  ): Promise<T | null> {
     try {
       const result = await this.elasticSearchClient.get({
         index,
@@ -64,7 +67,7 @@ export class ElasticSearch {
       return result?._source as T;
     } catch (error) {
       this.serviceLogger.logCatch(error, 'createIndex');
-      throw new NotFoundError('Item not found', 'getIndexedData method');
+      return null;
     }
   }
   async createIndex(indexName: string): Promise<void> {
