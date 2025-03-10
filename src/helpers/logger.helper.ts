@@ -2,7 +2,7 @@ import { getErrorMessage } from '../helpers';
 import { winstonLogger } from './logger.base';
 import { Logger } from 'winston';
 
-type LogCatchFunction = (
+type CaptureErrorFunction = (
   error: unknown,
   source: string,
   level?: 'error' | 'warn' | 'info'
@@ -10,7 +10,7 @@ type LogCatchFunction = (
 
 export type ServiceLogger = {
   log: Logger;
-  logCatch: LogCatchFunction;
+  captureError: CaptureErrorFunction;
 };
 
 export const createLogger = (
@@ -19,8 +19,12 @@ export const createLogger = (
   level: string = 'debug'
 ): ServiceLogger => {
   const log: Logger = winstonLogger(elasticUrl, serviceName, level);
-  const logCatch: LogCatchFunction = (error, source, level = 'error') => {
+  const captureError: CaptureErrorFunction = (
+    error,
+    source,
+    level = 'error'
+  ) => {
     log.log(level, `[${serviceName}] ${source}`, getErrorMessage(error));
   };
-  return { log, logCatch };
+  return { log, captureError };
 };
