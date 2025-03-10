@@ -1,5 +1,8 @@
 export const ExchangeNames = {
   AUTH_NOTIFICATION_EMAIL: 'send-auth-notification-email',
+  CREATE_ORDER_EMAIL: 'create-order-email',
+  DELETE_COMPLETED_CART: 'delete-completed-cart',
+
   USERS_BUYER_UPDATE: 'update-users-buyer',
   USERS_STORE_UPDATE: 'update-users-store',
   GET_STORE_USERS: 'get-store-users',
@@ -10,6 +13,9 @@ export const ExchangeNames = {
 
 export const RoutingKeys = {
   AUTH_NOTIFICATION_EMAIL: 'send-auth-notification-email-key',
+  CREATE_ORDER_EMAIL: 'create-order-email-key',
+  DELETE_COMPLETED_CART: 'delete-completed-cart-key',
+
   USERS_BUYER_UPDATE: 'update-users-buyer-key',
   USERS_STORE_UPDATE: 'update-users-store-key',
   GET_STORE_USERS: 'get-store-users-key',
@@ -20,6 +26,9 @@ export const RoutingKeys = {
 
 export const QueueNames = {
   AUTH_NOTIFICATION_EMAIL: 'auth-notification-email-queue',
+  CREATE_ORDER_EMAIL: 'create-order-email-queue',
+  DELETE_COMPLETED_CART: 'delete-completed-cart-queue',
+
   USERS_BUYER_UPDATE: 'update-users-buyer-queue',
   USERS_STORE_UPDATE: 'update-users-store-queue',
   GET_STORE_USERS: 'get-store-users-queue',
