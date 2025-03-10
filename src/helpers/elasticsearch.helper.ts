@@ -87,7 +87,6 @@ export class ElasticSearch {
         index,
         id: itemId,
         document: doc,
-        op_type: 'create',
       });
     } catch (error) {
       this.serviceLogger.captureError(error, 'indexDocument');
