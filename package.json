@@ -1,5 +1,5 @@
 {
-  "version": "0.0.51",
+  "version": "0.0.1",
   "license": "MIT",
   "description": "Helpers library for theshopi app",
   "engines": {
@@ -7,6 +7,7 @@
   },
   "scripts": {
     "build": "rm -rf build && npm run build:cjs && npm run build:esm && tsc --outDir build/src && node scripts/build-package.js",
+    "prepublishOnly": "npm run build",
     "build:cjs": "NODE_ENV=production BABEL_ENV=cjs babel src --presets=./scripts/babel-preset.js --extensions .ts,.tsx --ignore src/**/*.specs.tsx --out-dir build/cjs --source-maps",
     "build:esm": "NODE_ENV=production BABEL_ENV=esm babel src --presets=./scripts/babel-preset.js --extensions .ts,.tsx --ignore src/**/*.specs.tsx --out-dir build/esm --source-maps"
   },
@@ -18,14 +19,12 @@
   },
   "keywords": [],
   "name": "@cngvc/shopi-shared",
-  "author": "joe",
+  "author": "cngvc",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cngvc/shopi-shared.git"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
+  "publishConfig": {},
   "files": [
     "build",
     "src"
