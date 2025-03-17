@@ -23,41 +23,6 @@ export type GatewayToken = (typeof tokens)[number];
 
 export class AuthMiddleware {
   private constructor() {}
-
-  static verifySessionJWT(req: Request, _: Response, next: NextFunction) {
-    const authHeader = req.headers.authorization;
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      throw new NotAuthorizedError(
-        'Authorization token is missing or invalid.',
-        'verifyBearerToken method'
-      );
-    }
-    try {
-      const token = authHeader.split(' ')[1];
-      const payload = verify(
-        token,
-        `${process.env.AUTH_JWT_TOKEN_SECRET}`
-      ) as IAuthPayload;
-      req.currentUser = payload;
-    } catch (error) {
-      throw new NotAuthorizedError(
-        'Token is not available, please login again.',
-        'verify token method'
-      );
-    }
-    next();
-  }
-
-  static checkAuthentication(req: Request, _: Response, next: NextFunction) {
-    if (!req.currentUser) {
-      throw new NotAuthorizedError(
-        'Authentication is required to access this route.',
-        'checkAuthentication method'
-      );
-    }
-    next();
-  }
-
   static verifyGatewayRequest(
     req: Request,
     _: Response,
