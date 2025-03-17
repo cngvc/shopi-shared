@@ -1,3 +1,5 @@
+export { getCurrentUser } from './helpers/user.helper';
+
 export { ElasticSearch } from './helpers/elasticsearch.helper';
 
 export { createLogger } from './helpers/logger.helper';
