@@ -21,6 +21,7 @@ export {
   ServerError,
   NotAuthorizedError,
   ErrnoException,
+  RateLimitedError,
 } from './responses/error-handler';
 
 export {
