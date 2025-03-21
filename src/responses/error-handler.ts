@@ -72,6 +72,15 @@ export class FileTooLargeError extends CustomError {
   }
 }
 
+export class RateLimitedError extends CustomError {
+  statusCode = StatusCodes.TOO_MANY_REQUESTS;
+  status = 'error';
+
+  constructor(message: string, confirmFrom: string) {
+    super(message, confirmFrom);
+  }
+}
+
 export class ServerError extends CustomError {
   statusCode = StatusCodes.SERVICE_UNAVAILABLE;
   status = 'error';
