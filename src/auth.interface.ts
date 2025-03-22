@@ -19,6 +19,13 @@ export interface IAuth {
   email?: string;
 }
 
+export interface IUserProviderDocument {
+  id?: string;
+  provider: string;
+  providerId: string;
+  user: IAuthDocument;
+}
+
 export interface IAuthDocument {
   id?: string;
   username?: string;

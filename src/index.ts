@@ -39,6 +39,7 @@ export {
   IAuthDocument,
   IEmailMessageDetails,
   IAuthUser,
+  IUserProviderDocument,
 } from './auth.interface';
 
 export {
