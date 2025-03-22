@@ -17,8 +17,12 @@ class SuccessResponse {
     this.metadata = metadata;
   }
 
-  send = (res: Response, headers = {}) => {
+  send = (res: Response) => {
     return res.status(this.status).json(this);
+  };
+
+  redirect = (res: Response, targetUrl: string) => {
+    return res.redirect(targetUrl);
   };
 }
 
