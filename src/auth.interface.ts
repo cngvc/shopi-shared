@@ -37,6 +37,7 @@ export interface IAuthDocument {
   updatedAt?: Date;
   passwordResetToken?: string;
   passwordResetExpires?: Date;
+  providers?: IUserProviderDocument[];
 }
 
 export interface IEmailMessageDetails {
