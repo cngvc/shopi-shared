@@ -115,3 +115,5 @@ web_modules/
 .pnp.*
 
 build
+
+.DB_Store
