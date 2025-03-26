@@ -8,9 +8,10 @@ service PaymentService {
 
 message CreatePaymentRequest {
   string orderPublicId = 1;
-  string method = 2;
-  float totalAmount = 3;
-  string currency = 4;
+  string buyerPublicId = 2;
+  string method = 3;
+  float totalAmount = 4;
+  string currency = 5;
 }
 
 message CreatePaymentResponse {
