@@ -19,8 +19,8 @@ const loadProto = (
   return grpc.loadPackageDefinition(packageDefinition);
 };
 
-export const authProto = loadProto('auth.proto');
-export const cartProto = loadProto('cart.proto');
-export const userProto = loadProto('user.proto');
-export const productProto = loadProto('product.proto');
-export const paymentProto = loadProto('payment.proto');
+export const authProto = loadProto('auth.proto')['auth'];
+export const cartProto = loadProto('cart.proto')['cart'];
+export const userProto = loadProto('user.proto')['user'];
+export const productProto = loadProto('product.proto')['product'];
+export const paymentProto = loadProto('payment.proto')['payment'];
