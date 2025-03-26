@@ -4,13 +4,8 @@ export { ElasticSearch } from './helpers/elasticsearch.helper';
 
 export { createLogger } from './helpers/logger.helper';
 
-export {
-  lowerCase,
-  toUpperCase,
-  isEmail,
-  isDataURL,
-  getErrorMessage,
-} from './helpers';
+export { lowerCase } from './helpers';
+
 export {
   IError,
   IErrorResponse,
@@ -50,3 +45,5 @@ export {
   ITerm,
   IPaginateProps,
 } from './search.interface';
+
+export * from './proto';

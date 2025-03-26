@@ -1,4 +1,3 @@
-import { getErrorMessage } from '../helpers';
 import { winstonLogger } from './logger.base';
 import { Logger } from 'winston';
 
@@ -24,7 +23,7 @@ export const createLogger = (
     source,
     level = 'error'
   ) => {
-    log.log(level, `[${serviceName}] ${source}`, getErrorMessage(error));
+    log.log(level, `[${serviceName}] ${source}`, error);
   };
   return { log, captureError };
 };
