@@ -119,16 +119,12 @@ export class ElasticSearch {
   }
   async search(
     index: string,
-    queryList: QueryListType,
+    query: QueryDslQueryContainer,
     params?: Omit<SearchRequest, 'index' | 'query'>
   ): Promise<SearchResponse> {
     return await this.elasticSearchClient.search({
       index,
-      query: {
-        bool: {
-          must: queryList,
-        },
-      },
+      query,
       ...params,
     });
   }
