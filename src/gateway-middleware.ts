@@ -1,9 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
 import { NotAuthorizedError } from './responses/error-handler';
-import { verify } from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import { IAuthPayload } from './auth.interface';
 dotenv.config({});
 
 const tokens = [
@@ -17,6 +15,8 @@ const tokens = [
   'review',
   'cart',
   'online-status',
+  'balance',
+  'payment',
 ] as const;
 
 export type GatewayToken = (typeof tokens)[number];
