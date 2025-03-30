@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package balance;
+
+service BalanceService {
+  rpc GetUserBalanceByAuthId (GetUserBalanceByAuthIdRequest) returns (GetUserBalanceByAuthIdResponse);
+}
+
+message GetUserBalanceByAuthIdRequest {
+  string authId = 1;
+}
+
+message GetUserBalanceByAuthIdResponse {
+  float balance = 1;
+}

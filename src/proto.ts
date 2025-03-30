@@ -24,3 +24,4 @@ export const cartProto = loadProto('cart.proto')['cart'];
 export const userProto = loadProto('user.proto')['user'];
 export const productProto = loadProto('product.proto')['product'];
 export const paymentProto = loadProto('payment.proto')['payment'];
+export const balanceProto = loadProto('balance.proto')['balance'];
